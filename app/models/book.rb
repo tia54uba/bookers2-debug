@@ -6,9 +6,9 @@ class Book < ApplicationRecord
   validates :body,presence:true,length:{maximum:200}
 
 
-def favorited_by?(user)
-  favorites.exists?(user_id:user.id)
-end
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
 
 end
