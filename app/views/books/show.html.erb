@@ -23,27 +23,15 @@
           <% end %>
           <td class="favorite-btn_<%= @book.id %>">
             <%= render "favorites/favorite-btn",book: @book %></td>
-          <td>コメント数:<%= @book.book_comments.count %></td>
+          <td class="comment_count"><%= render "favorites/comment_count",book: @book %></td>
         </tr>
-        <% @book.book_comments.each do |book_comment| %>
-        <tr>
-        <td><%= link_to(@book.user) do %>
-          <%= image_tag book_comment.user.get_profile_image, size:"100x100" %><br>
-        <%= book_comment.user.name %>
-        <% end %>
-        </td>
-        <td><%= book_comment.comment %></td>
-        <% if book_comment.user == current_user %>
-        <td><%=link_to 'Destroy', book_book_comment_path(@book,book_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
-        <% end %>
-        </tr>
-        <% end %>
-      </table>
+        </table>
+
+        <div id="comments_index">
+       <%= render "book_comments/index",book: @book %>
+       </div>
       <div>
-        <%=form_with model:[@book,@book_comment],local:true do |f| %>
-        <%=f.text_area:comment %>
-        <%= f.submit"送信" %>
-        <% end %>
+        <%= render 'book_comments/form',book: @book, book_comment: @book_comment %>
       </div>
     </div>
   </div>
