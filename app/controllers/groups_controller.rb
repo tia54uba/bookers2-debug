@@ -18,7 +18,7 @@ def new
 end
 
 def create
-  @group = Group.find(params[:id])
+  @group = Group.new(group_params)
   @group.owner_id = current_user.id
   if @group.save
     redirect_to groups_path
