@@ -1,9 +1,9 @@
 class GroupsController < ApplicationController
-  before_action :authenticatable_user!
+  before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update]
-end
 
-def index 
+
+def index
   @book = Book.new
   @groups = Group.all
 end
@@ -33,7 +33,7 @@ end
 def update
   if @group.update(group_params)
     redirect_to groups_path
-  else 
+  else
     render "edit"
   end
 end
