@@ -21,6 +21,7 @@ end
  def create
   @chat = current_user.chats.new(chat_params)
   @chat.save
+  redirect_to request.referer
  end
 
  private
